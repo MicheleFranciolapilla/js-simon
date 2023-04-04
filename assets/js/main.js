@@ -7,8 +7,11 @@
 // * Dividete in piccoli problemi la consegna.
 // * Individuate gli elementi di cui avete bisogno per realizzare il programma.
 
-const   max_value       = 100;
-const   array_length    = 5; 
+const   random_show_time    = 1500;
+const   memo_time           = 5000;
+const   max_value           = 100;
+const   array_length        = 5; 
+let     html_random_id      = document.querySelectorAll("#random_nr_box > div.col-1");
 let     random_nr_array;
 
 function reset_random_array()
@@ -40,18 +43,25 @@ function fill_random_array()
 function show_random_nr()
 {
     let i = -1;
-    let html_random_id = document.querySelectorAll("#random_nr_box > div.col-1");
     let slow_show = setInterval(function()
     {
         i++;
         html_random_id[i].innerText = random_nr_array[i];
-    }, 2000);
+    }, random_show_time);
     setTimeout(function()
     {
         clearInterval(slow_show);
-    }, 10000)
+    }, random_show_time * array_length);
     console.log(html_random_id);
 }
 
 fill_random_array();
 show_random_nr();
+let memorise = setTimeout(function()
+{
+    for (let i = 0; i < array_length; i++)
+    {
+        html_random_id[i].innerText = "?";
+    }
+    console.log("Nascosti");
+}, memo_time + (random_show_time * array_length));
