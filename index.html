@@ -18,7 +18,16 @@
     <title>JS Simon</title>
 </head>
 <body>
-    <div class="vh-100 bg-dark pt-5">
+    <div class="p_rel vh-100 bg-dark pt-5">
+        <div id="finished" class="row d_none p_abs p_center my-5 p-3 border border-3 border-light rounded-3 bg-info">
+            <h3 class="text-black-50 my-2">Messaggio</h3>
+            <div class="col-4 offset-1">
+                <button type="button" class="btn btn-primary border-secondary" onclick="location.reload()">Gioca ancora</button>
+            </div>
+            <div class="col-4 offset-3">
+                <button type="button" class="btn btn-light border-secondary" onclick="window.close()">Abbandona</button>
+            </div>
+        </div>
         <main class="container">
             <section id="random_nr_section" class="w-75 mx-auto p-3 border border-3 border-light rounded-3 bg-success">
                 <h3 class="text-white">Prendi nota MENTALMENTE dei 5 numeri che sto per mostrarti</h3>
@@ -48,7 +57,7 @@
                     </div>
                 </form>
             </section>
-            <section id="user_nr_section" class="d_none w-75 mx-auto p-3">
+            <section id="user_nr_section" class="d_none w-75 mx-auto mb-5 p-3">
                 <div id="user_nr_box" class="row p-2 flex_main_btw">
                     <div id="user_1" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>
                     <div id="user_2" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>

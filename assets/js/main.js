@@ -14,6 +14,7 @@ const   max_value       = 100;
 const   array_length    = 5; 
 let     html_random_id  = document.querySelectorAll("#random_nr_box div.col-1");
 let     html_user_id    = document.querySelectorAll("#user_nr_box div.col-1");
+const   bg_color_array  = ["yellow", "green", "orange", "red", "blue"];
 let     random_nr_array;
 let     user_nr_array;
 let     ready_to_input  = false; 
@@ -57,7 +58,6 @@ function show_random_nr()
     {
         clearInterval(slow_show);
     }, memo_time * array_length);
-    console.log(html_random_id);
 }
 
 function go_to_input()
@@ -81,9 +81,55 @@ function waiting()
 }, extra_time + (memo_time * array_length));
 }
 
+function final_msg(matches)
+{
+    let message = "";
+    switch (matches)
+    {
+        case 0:
+            message = "Ragazzo/a mio/a, mangia più pesce, poichè la tua memoria è messa maluccio!!!";
+            break;
+        case 1:
+            message = "Diciamo che poteva andarti peggio ..... almeno un numero lo hai ricordato!";
+            break;
+        case 2:
+            message = "2 su 5..... Hai dei margini di miglioramento ma non stai messo male!";
+            break;
+        case 3:
+            message = "Wow!!! Ne hai ricordati 3 su 5. Bravo/a; continua ad esercitarti!!!";
+            break;
+        case 4:
+            message = "Complimenti! Hai dato prova di buona memoria visiva: 4 su 5!!!";
+            break;
+        default:
+            message = "Che dire?!? Ci inchiniamo di fronte ai tuoi neuroni..... 5 su 5!!!!!";
+            break;
+    }
+    document.getElementById("finished").classList.remove("d_none");
+    document.querySelector("#finished h3").innerText = message;
+}
+
 function compare_array()
 {
     document.getElementById("input_nr_section").classList.add("d_none");
+    for (let i = 0; i < array_length; i++)
+    {
+        html_random_id[i].innerText = random_nr_array[i];
+    }
+    let matches = 0;
+    for (let i = 0; i < array_length; i++)
+    {
+        for (let j = 0; j < array_length; j++)
+        {
+            if (user_nr_array[i] == random_nr_array[j])
+            {
+                html_user_id[i].setAttribute("style", `background-color: ${bg_color_array[matches]} !important; color: white;`);
+                html_random_id[j].setAttribute("style", `background-color: ${bg_color_array[matches]} !important; color:white;`);
+                matches++;
+            }
+        }
+    }
+    final_msg(matches);
 }
 
 function en_dis_input(disable_boolean)
