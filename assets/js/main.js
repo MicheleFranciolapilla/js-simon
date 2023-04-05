@@ -7,16 +7,21 @@
 // * Dividete in piccoli problemi la consegna.
 // * Individuate gli elementi di cui avete bisogno per realizzare il programma.
 
-const   random_show_time    = 1500;
-const   memo_time           = 5000;
-const   max_value           = 100;
-const   array_length        = 5; 
-let     html_random_id      = document.querySelectorAll("#random_nr_box > div.col-1");
+const   error_time      = 2000; 
+const   extra_time      = 2500;
+const   memo_time       = 1000;
+const   max_value       = 100;
+const   array_length    = 5; 
+let     html_random_id  = document.querySelectorAll("#random_nr_box div.col-1");
+let     html_user_id    = document.querySelectorAll("#user_nr_box div.col-1");
 let     random_nr_array;
+let     user_nr_array;
+let     ready_to_input  = false; 
 
-function reset_random_array()
+function reset_array()
 {
     random_nr_array = [];
+    user_nr_array = [];
 }
 
 function int_random(max)
@@ -26,7 +31,7 @@ function int_random(max)
 
 function fill_random_array()
 {
-    reset_random_array();
+    reset_array();
     let random_value;
     for (let i = 0; i < array_length; i++)
     {
@@ -47,21 +52,79 @@ function show_random_nr()
     {
         i++;
         html_random_id[i].innerText = random_nr_array[i];
-    }, random_show_time);
+    }, memo_time);
     setTimeout(function()
     {
         clearInterval(slow_show);
-    }, random_show_time * array_length);
+    }, memo_time * array_length);
     console.log(html_random_id);
 }
 
-fill_random_array();
-show_random_nr();
-let memorise = setTimeout(function()
+function go_to_input()
 {
+    document.getElementById("input_nr_section").classList.remove("d_none");  
+    document.getElementById("user_nr_section").classList.remove("d_none");  
+}
+
+function waiting()
+{
+    let memorise = setTimeout(function()
+{
+    console.log(ready_to_input)
     for (let i = 0; i < array_length; i++)
     {
         html_random_id[i].innerText = "?";
     }
-    console.log("Nascosti");
-}, memo_time + (random_show_time * array_length));
+    ready_to_input = true;
+    console.log(ready_to_input);
+    go_to_input();
+}, extra_time + (memo_time * array_length));
+}
+
+function compare_array()
+{
+    document.getElementById("input_nr_section").classList.add("d_none");
+}
+
+function en_dis_input(disable_boolean)
+{
+    document.getElementById("input_nr").disabled = disable_boolean;
+    document.getElementById("submit_nr").disabled = disable_boolean;
+}
+
+function value_repeated(user_value)
+{
+    en_dis_input(true);
+    document.getElementById("error_nr").innerText = user_value;
+    document.getElementById("error_msg").classList.toggle("d_none");
+    let error_timer = setTimeout(function()
+    {
+        document.getElementById("error_msg").classList.toggle("d_none");
+        en_dis_input(false);
+    },error_time);
+}
+
+data_form.addEventListener("submit", (call_back_function) =>
+{
+    call_back_function.preventDefault();
+    const user_value = document.getElementById("input_nr").value;
+    if (user_nr_array.includes(user_value))
+    {
+        value_repeated(user_value);
+    }
+    else
+    {
+        user_nr_array.push(user_value);     
+        html_user_id[user_nr_array.length - 1].innerText = user_value;
+        document.getElementById("input_nr").value = "";
+    }
+    if (user_nr_array.length == array_length)
+    {
+        // Input concluso
+        compare_array();
+    }
+});
+
+fill_random_array();
+show_random_nr();
+waiting();

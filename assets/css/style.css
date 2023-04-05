@@ -1,12 +1,5 @@
-/* DICHIARAZIONE VARIABILI */
-:root
-{
-    /* VARIABILI DIMENSIONALI */
-    /* VARIABILI CROMATICHE */
-
-}
-
-#random_nr_section > #random_nr_box > div
+#random_nr_section > #random_nr_box > div.col-1,
+#user_nr_section > #user_nr_box > div.col-1
 {
     aspect-ratio: 1;
 }

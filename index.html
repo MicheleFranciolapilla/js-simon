@@ -30,6 +30,33 @@
                     <div id="random_5" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-info">?</div>
                 </div>
             </section>
+            <section id="input_nr_section" class="d_none p_rel w-75 p-2 mt-3 mx-auto p-3 border border-3 border-light rounded-3 bg-secondary">
+                <div id="error_msg" class="d_none p_abs p_bottom_left border border-3 border-danger bg-warning p-2">
+                    <h5 class="center_text">Errore</h5>
+                    <h6>Il numero <span id="error_nr">?</span> è già stato inserito.</h6>
+                </div>
+                <h4>Cerca di ricordare i numeri che hai visto ed inseriscili, uno per volta, alternandoli con "Conferma"</h4>
+                <form id="data_form" class="row p-2">
+                    <div class="col-2">
+                        <label id="input_label" for="input_nr" class="form-label pt-2">Inserisci numero...</label>
+                    </div>
+                    <div class="col-2">
+                        <input id="input_nr" type="number" class="form-control" max="999" aria-label="input_number" required>
+                    </div>
+                    <div class="col-2 offset-3">
+                        <button id="submit_nr" type="submit" class="btn btn-primary border-light">Conferma</button>
+                    </div>
+                </form>
+            </section>
+            <section id="user_nr_section" class="d_none w-75 mx-auto p-3">
+                <div id="user_nr_box" class="row p-2 flex_main_btw">
+                    <div id="user_1" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>
+                    <div id="user_2" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>
+                    <div id="user_3" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>
+                    <div id="user_4" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>
+                    <div id="user_5" class="col-1 border border-3 border-light d-flex flex_center fs-1 rounded-circle bg-secondary">?</div>
+                </div>
+            </section>
         </main>
     </div>
 
